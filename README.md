@@ -1,8 +1,16 @@
 # RestAssuredTask
 Using Mavan, RestAssured , Cucumber
 
+Steps to use this project 
+
+                Install Maven from marketplace 
+                
+                import the project as a maven project 
+                
+                Download  RestAssured, Cucumber Dependencies 
 
 
+Task
 API Test Automation:
 
 
