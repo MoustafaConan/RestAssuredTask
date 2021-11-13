@@ -22,7 +22,7 @@ import static io.restassured.RestAssured.given;
 public class GetRandomFact {
     Response response;
 
-    @Given("I Entered the end point")
+    @Given("I Entered the URI")
     public void I_Entered_the_end_point() {
         // Write code here that turns the phrase above into concrete action
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";

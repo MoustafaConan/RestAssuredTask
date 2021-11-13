@@ -3,7 +3,7 @@ Feature:
 
 
   Scenario: return a random fact
-    Given I Entered the end point
+    Given I Entered the URI
     When  I send a get request
     Then I assert that a random fact has text
 
