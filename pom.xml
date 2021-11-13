@@ -74,6 +74,21 @@
             <artifactId>json-path</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
