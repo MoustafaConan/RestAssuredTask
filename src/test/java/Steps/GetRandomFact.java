@@ -19,9 +19,6 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-// Ctrl Alt L format code
-// Ctrl Alt S settings
-// Ctrl Shift F10 run code
 public class GetRandomFact {
     Response response;
 
