@@ -7,4 +7,5 @@ import io.restassured.response.Response;
 public class BaseSteps {
     Response response;
     Scenario scenario;
+	//To elimante duplication
 }
