@@ -1,3 +1,4 @@
+/*
 package Steps;
 
 import io.cucumber.java.Before;
@@ -5,17 +6,24 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
+import org.testng.Assert;
+
 import static org.junit.Assert.*;
+
+
+import java.util.List;
+import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 
-public class GetRandomFact {
+public class GetRandomFactFromFacts {
     Response response;
     private Scenario scenario;
 
@@ -28,7 +36,7 @@ public class GetRandomFact {
     public void I_Entered_the_end_point() {
         // Write code here that turns the phrase above into concrete action
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
-        RestAssured.defaultParser = Parser.JSON;
+        //RestAssured.defaultParser = Parser.JSON;
     }
 
     @When("I send a get request")
@@ -47,17 +55,22 @@ public class GetRandomFact {
     @Then("I assert that a random fact has text")
     public void iAssertARandomFactHasText() {
         JsonPath responseBody = response.jsonPath();
+        List<Object>  list = responseBody.getList("$");
+        JSONArray jsonArray=new JSONArray(list);
+       int rand= getRandomNumber();
+       JSONObject jsonObject = jsonArray.getJSONObject(rand);
 
-       //Attaching the response body to the report
-        String payload = responseBody.get().toString();
-        payload = prettyPrintJSON(payload);
-        scenario.log("The Response body is \n");
-        scenario.log(payload);
+        String TextValue = jsonObject.get("Text").toString().toString();
+        Assert.assertTrue(!TextValue.isEmpty());
 
-        //Assert that the chosen cat text property isn't empty
-        String textValue = responseBody.get("text");
-        Assertions.assertTrue(!textValue.isEmpty());
+    }
 
+    private int getRandomNumber() {
+        Random rand = new Random(); //instance of random class
+        int upperbound = 25;
+        //generate random values from 0-24
+         int int_random = rand.nextInt(upperbound);
+         return int_random;
     }
 
     //Thanks to this guy https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
@@ -119,3 +132,4 @@ public class GetRandomFact {
     }
 
 }
+*/
