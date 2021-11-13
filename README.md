@@ -1,4 +1,4 @@
-# RestAusseredTask
+# RestAssuredTask
 Using Mavan, RestAssured , Cucumber
 
 
