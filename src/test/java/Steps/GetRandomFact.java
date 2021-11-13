@@ -19,11 +19,14 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
+// Ctrl Alt L format code
+// Ctrl Alt S settings
+// Ctrl Shift F10 run code
 public class GetRandomFact {
     Response response;
 
-    @Given("I Entered the URI")
-    public void I_Entered_the_URI() {
+    @Given("I Entered the URL")
+    public void I_Entered_the_end_point() {
         // Write code here that turns the phrase above into concrete action
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
         RestAssured.defaultParser = Parser.JSON;
@@ -33,25 +36,23 @@ public class GetRandomFact {
     public void I_send_a_get_request() {
         String API = "facts/random/";
         response = given().
-                queryParam("animal_type", "cat")
-                .queryParam("amount", "1").
-                when().get(API).then().extract().response();
+                    queryParam("animal_type", "cat").
+                    queryParam("amount", "1").
+                when().
+                    get(API).
+                then().
+                    extract().response();
     }
 
-    @Test
+
     @Then("I assert that a random fact has text")
     public void iAssertARandomFactHasText() {
         JsonPath responseBody = response.then().extract().jsonPath();
         String textValue = responseBody.get("text");
         System.out.println(textValue);
+
         Assertions.assertTrue(!textValue.isEmpty());
 
     }
 
-    private int getRandomNumber(JSONArray jsonArray) {
-        Random rand = new Random(); //instance of random class
-        int upperbound = jsonArray.length();
-        int int_random = rand.nextInt(upperbound);
-        return int_random;
-    }
 }
