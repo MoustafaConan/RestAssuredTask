@@ -1,79 +1,70 @@
-/*
+
 package Steps;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.jupiter.api.Assertions;
 import org.testng.Assert;
-
-import static org.junit.Assert.*;
-
 
 import java.util.List;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 
-public class GetRandomFactFromFacts {
-    Response response;
-    private Scenario scenario;
-
+public class GetRandomFactFromFacts extends BaseSteps {
     @Before
     public void before(Scenario scenario) {
         this.scenario = scenario;
     }
 
-    @Given("I Entered the URL")
-    public void I_Entered_the_end_point() {
-        // Write code here that turns the phrase above into concrete action
-        RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
-        //RestAssured.defaultParser = Parser.JSON;
-    }
-
-    @When("I send a get request")
+    @When("I send a get request for facts")
     public void I_send_a_get_request() {
-        String API = "facts/random/";
+        String API = "facts/";
         response =
                 given().
-                        queryParam("animal_type", "cat").
-                        queryParam("amount", "1").
-                when().
-                get(API).
-                then().
+                        when().
+                        get(API).
+                        then().
                         extract().response();
     }
 
-    @Then("I assert that a random fact has text")
+    @Then("I assert that a random fact from facts has text")
     public void iAssertARandomFactHasText() {
+
+        //Create array of objects
         JsonPath responseBody = response.jsonPath();
         List<Object>  list = responseBody.getList("$");
         JSONArray jsonArray=new JSONArray(list);
-       int rand= getRandomNumber();
-       JSONObject jsonObject = jsonArray.getJSONObject(rand);
 
-        String TextValue = jsonObject.get("Text").toString().toString();
+        //Get a random fact
+        int rand= getRandomNumber(jsonArray.length());
+        JSONObject jsonObject = jsonArray.getJSONObject(rand);
+
+        //log the chosen fact
+        String payload = jsonObject.toString();
+        payload = prettyPrintJSON(payload);
+        scenario.log("The Response body of chosen fact \n");
+        scenario.log(payload);
+
+        //Assert that the text property is not empty
+        String TextValue = jsonObject.get("text").toString().toString();
         Assert.assertTrue(!TextValue.isEmpty());
 
     }
 
-    private int getRandomNumber() {
+    private int getRandomNumber(int upper) {
         Random rand = new Random(); //instance of random class
-        int upperbound = 25;
+        int upperbound = upper;
         //generate random values from 0-24
          int int_random = rand.nextInt(upperbound);
          return int_random;
     }
 
-    //Thanks to this guy https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
+    //print a pretty json
     public static String prettyPrintJSON(String unformattedJsonString) {
         StringBuilder prettyJSONBuilder = new StringBuilder();
         int indentLevel = 0;
@@ -132,4 +123,4 @@ public class GetRandomFactFromFacts {
     }
 
 }
-*/
+

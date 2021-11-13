@@ -7,17 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
-import static org.junit.Assert.*;
 
 import static io.restassured.RestAssured.given;
 
-public class GetRandomFact {
-    Response response;
-    private Scenario scenario;
+public class GetRandomFact extends BaseSteps {
 
     @Before
     public void before(Scenario scenario) {
@@ -28,7 +23,7 @@ public class GetRandomFact {
     public void I_Entered_the_end_point() {
         // Write code here that turns the phrase above into concrete action
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
-        RestAssured.defaultParser = Parser.JSON;
+        //RestAssured.defaultParser = Parser.JSON;
     }
 
     @When("I send a get request")
@@ -38,9 +33,9 @@ public class GetRandomFact {
                 given().
                         queryParam("animal_type", "cat").
                         queryParam("amount", "1").
-                when().
-                get(API).
-                then().
+                        when().
+                        get(API).
+                        then().
                         extract().response();
     }
 
@@ -60,7 +55,7 @@ public class GetRandomFact {
 
     }
 
-    //Thanks to this guy https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
+    //print a pretty json
     public static String prettyPrintJSON(String unformattedJsonString) {
         StringBuilder prettyJSONBuilder = new StringBuilder();
         int indentLevel = 0;
