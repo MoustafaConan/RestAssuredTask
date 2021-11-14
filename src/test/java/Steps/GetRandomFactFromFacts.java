@@ -37,11 +37,11 @@ public class GetRandomFactFromFacts extends BaseSteps {
 
         //Create array of objects
         JsonPath responseBody = response.jsonPath();
-        List<Object>  list = responseBody.getList("$");
-        JSONArray jsonArray=new JSONArray(list);
+        List<Object> list = responseBody.getList("$");
+        JSONArray jsonArray = new JSONArray(list);
 
         //Get a random fact
-        int rand= getRandomNumber(jsonArray.length());
+        int rand = getRandomNumber(jsonArray.length());
         JSONObject jsonObject = jsonArray.getJSONObject(rand);
 
         //log the chosen fact
@@ -59,9 +59,8 @@ public class GetRandomFactFromFacts extends BaseSteps {
     private int getRandomNumber(int upper) {
         Random rand = new Random(); //instance of random class
         int upperbound = upper;
-        //generate random values from 0-24
-         int int_random = rand.nextInt(upperbound);
-         return int_random;
+        int int_random = rand.nextInt(upperbound);
+        return int_random;
     }
 
     //print a pretty json
@@ -96,7 +95,7 @@ public class GetRandomFactFromFacts extends BaseSteps {
                     indentLevel--;
                     appendIndentedNewLine(indentLevel, prettyJSONBuilder);
                     appendIndentedNewLine(indentLevel, prettyJSONBuilder);
-                    ;
+
                     prettyJSONBuilder.append(charFromUnformattedJson);
                     break;
                 case ',':
