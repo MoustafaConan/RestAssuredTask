@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 
 import static io.restassured.RestAssured.given;
 
+//GetRandomFact
 public class GetRandomFact extends BaseSteps {
 
     @Before
