@@ -7,7 +7,14 @@ Steps to use this project :
                 
                 import the project as a maven project 
                 
-                Download  RestAssured, Cucumber Dependencies 
+                Download  RestAssured, Cucumber Dependencies,TestNG 
+                
+Make sure that the following plugins are installed
+
+                 Cucumber 
+                 Gherkin
+                 TestNG
+
 
 
 Task
