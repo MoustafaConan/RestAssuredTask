@@ -7,9 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="RestAssuredTask" />
         <module name="GetRandomFactTask" />
+        <module name="RestAssuredDemo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RestAssuredTask" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>
