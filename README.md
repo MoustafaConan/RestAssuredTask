@@ -1,7 +1,7 @@
 # RestAssuredTask
 Using Mavan, RestAssured , Cucumber
 
-Steps to use this project 
+Steps to use this project :
 
                 Install Maven from marketplace 
                 
