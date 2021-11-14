@@ -23,6 +23,7 @@ public class GetRandomFact extends BaseSteps {
 
     @Given("I Entered the URL")
     public void I_Entered_the_end_point() {
+        //new Comment 
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
         RestAssured.defaultParser = Parser.JSON;
     }
