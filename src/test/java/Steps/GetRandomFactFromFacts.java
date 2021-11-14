@@ -59,8 +59,8 @@ public class GetRandomFactFromFacts extends BaseSteps {
     private int getRandomNumber(int upper) {
         Random rand = new Random(); //instance of random class
         int upperbound = upper;
-        //generate random values from 0-24
-         int int_random = rand.nextInt(upperbound);
+
+        int int_random = rand.nextInt(upperbound);
          return int_random;
     }
 
