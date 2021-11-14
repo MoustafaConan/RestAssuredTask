@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
@@ -37,11 +38,12 @@ public class GetRandomFactFromFacts extends BaseSteps {
 
         //Create array of objects
         JsonPath responseBody = response.jsonPath();
-        List<Object>  list = responseBody.getList("$");
+        List<Map<String,String>>  list = responseBody.getList("$");
         JSONArray jsonArray=new JSONArray(list);
 
-        //Get a random fact
         int rand= getRandomNumber(jsonArray.length());
+        String textValue = list.get(rand).get("text");
+        //Get a random fact
         JSONObject jsonObject = jsonArray.getJSONObject(rand);
 
         //log the chosen fact
