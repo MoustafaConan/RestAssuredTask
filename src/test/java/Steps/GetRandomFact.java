@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.Assertions;
 
@@ -22,9 +23,8 @@ public class GetRandomFact extends BaseSteps {
 
     @Given("I Entered the URL")
     public void I_Entered_the_end_point() {
-        // Write code here that turns the phrase above into concrete action
         RestAssured.baseURI = "https://cat-fact.herokuapp.com/";
-        //RestAssured.defaultParser = Parser.JSON;
+        RestAssured.defaultParser = Parser.JSON;
     }
 
     @When("I send a get request")
@@ -90,7 +90,7 @@ public class GetRandomFact extends BaseSteps {
                     indentLevel--;
                     appendIndentedNewLine(indentLevel, prettyJSONBuilder);
                     appendIndentedNewLine(indentLevel, prettyJSONBuilder);
-                    ;
+
                     prettyJSONBuilder.append(charFromUnformattedJson);
                     break;
                 case ',':
