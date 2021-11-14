@@ -30,6 +30,8 @@ public class GetRandomFact extends BaseSteps {
     @When("I send a get request")
     public void I_send_a_get_request() {
         String API = "facts/random/";
+        
+        //Get response
         response =
                 given().
                         queryParam("animal_type", "cat").
